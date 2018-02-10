@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from base.models.mixins import AuditMixin
 
@@ -21,7 +22,9 @@ class Map(AuditMixin):
         return self.name
 
     def labels(self):
-        pass
+        from base.models.label import Label
+        result = get_object_or_404(Label, map=self)
+        return result
         # returns labels of map
 
     def qr(self):
