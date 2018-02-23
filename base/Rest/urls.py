@@ -3,7 +3,8 @@ from django.conf.urls import include, url
 from rest_framework.routers import DefaultRouter
 from base.Rest.views.label import LabelView
 from base.Rest.views.map import MapView
-from base.Rest.views.user import UserListView, RegisterView, LogoutView, LoginView
+from base.Rest.views.user import UserListView, RegisterView
+from rest_auth.views import LoginView, LogoutView
 
 
 router = DefaultRouter()

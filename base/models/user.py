@@ -3,10 +3,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from base.models.map import Map
+from base.models.mixins import AuditMixin
 from django.shortcuts import get_object_or_404
 
 
-class CustomUser(AbstractUser):
+class CustomUser(AbstractUser, AuditMixin):
     contact = models.CharField(max_length=100, unique=True)
     positionID = models.IntegerField(null=True)
     coords = models.CharField(max_length=100)

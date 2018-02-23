@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'base',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth'
 
 ]
 
@@ -154,3 +155,5 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
+
+ACCOUNT_LOGOUT_ON_GET = True

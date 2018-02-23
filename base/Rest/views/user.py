@@ -2,7 +2,7 @@
 from django.contrib.auth import authenticate, login, logout
 from rest_framework.authtoken.models import Token
 from rest_framework.filters import OrderingFilter
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from url_filter.integrations.drf import DjangoFilterBackend
@@ -17,7 +17,7 @@ class UserListView(ReadOnlyModelViewSet):
     serializer_class = UserSerializer
     filter_backends = (OrderingFilter, DjangoFilterBackend)
     filter_class = UserFilter
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (AllowAny, )
     queryset = CustomUser.objects.all()
     ordering_fields = '__all__'
 
@@ -67,22 +67,15 @@ class LoginView(CreateAPIView):
             # No backend authenticated the credentials
 
 
-class LogoutView(CreateAPIView):
+class LogoutView(ListAPIView):
     model = CustomUser
     serializer_class = LoginSerializer
     filter_backends = (OrderingFilter, DjangoFilterBackend)
     filter_class = UserFilter
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (AllowAny, )
     queryset = CustomUser.objects.all()
     ordering_fields = '__all__'
 
-    def perform_create(self, serializer):
-
-        email = serializer.data['email']
-
-        user = CustomUser.objects.filter(email=email).first()
-        if not user:
-            return Response({'message': 'Redirecting to register page. Please register to log in.'})
-
+    def list(self, request, *args, **kwargs):
         logout(self.request)
         return Response({'message': 'Successfully Logged out!'})
