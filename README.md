@@ -10,6 +10,21 @@ Read below to help us to do best.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+## Installation
+(Optional)I recommend users to use virtual environment with virtual environment wrapper.
+
+`
+pip install -r requirements.txt
+`
+
+Go into project directory that has manage.py file
+
+`python manage.py makemigrations`
+
+
+`python manage.py migrate`
+
+`python manage.py runserver`
 
 ## Built With
 
