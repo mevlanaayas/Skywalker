@@ -110,6 +110,3 @@ venv.bak/
 
 # db files
 db.sqlite3
-
-# environment variables
-Skywalker/environment.py
