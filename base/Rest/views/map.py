@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from rest_framework import status
 from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -23,4 +24,5 @@ class MapView(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        return Response({'map_name': serializer.data['name'], 'op': 'created'}, headers=headers)
+        return Response({'map_name': serializer.data['name'], 'op': 'created'}, headers=headers,
+                        status=status.HTTP_201_CREATED)
