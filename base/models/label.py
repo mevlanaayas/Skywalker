@@ -15,7 +15,7 @@ class Label(AuditMixin):
         unique_together = ('name', 'map')
         verbose_name = _('Label')
         verbose_name_plural = _('Labels')
-        db_table = 'base_labels'
+        db_table = 'labels'
         app_label = 'base'
 
     def __unicode__(self):

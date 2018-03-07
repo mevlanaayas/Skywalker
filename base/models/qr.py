@@ -30,7 +30,7 @@ class KR(AuditMixin):
     class Meta:
         verbose_name = _('KR')
         verbose_name_plural = _('KRs')
-        db_table = 'base_KRs'
+        db_table = 'KRs'
         app_label = 'base'
 
     def __unicode__(self):
