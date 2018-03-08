@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
 from base.models import Map
 
 
@@ -8,8 +9,10 @@ class MapSerializer(ModelSerializer):
 
     """
     labels = SerializerMethodField()
+    label_data = serializers.CharField(write_only=True)
 
-    def get_labels(self, obj):
+    @staticmethod
+    def get_labels(obj):
         return obj.labels()
 
     class Meta:
@@ -17,4 +20,9 @@ class MapSerializer(ModelSerializer):
 
         """
         model = Map
-        fields = ('name', 'point_set', 'labels', 'created_at', 'created_by', 'updated_at', 'updated_by')
+        fields = ('name', 'labels', 'movement_data', 'map_data', 'label_data')
+
+    def create(self, validated_data):
+        label_data = validated_data['label_data']
+        del validated_data['label_data']
+        return super(MapSerializer, self).create(validated_data)

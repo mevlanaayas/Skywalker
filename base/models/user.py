@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from base.models.map import Map
 from base.models.mixins import AuditMixin
-from django.shortcuts import get_object_or_404
 
 
 class CustomUser(AbstractUser, AuditMixin):
@@ -19,6 +18,6 @@ class CustomUser(AbstractUser, AuditMixin):
         app_label = 'base'
 
     def map(self):
-        result = get_object_or_404(Map, id=self.positionID)
+        result = Map.objects.get(id=self.positionID).name
         return result
         # returns map that has id of positionID
