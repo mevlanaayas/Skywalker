@@ -20,7 +20,7 @@ class MapSerializer(ModelSerializer):
 
         """
         model = Map
-        fields = ('name', 'labels', 'movement_data', 'map_data', 'label_data')
+        fields = ('id', 'name', 'labels', 'movement_data', 'map_data', 'label_data')
 
     def create(self, validated_data):
         label_data = validated_data['label_data']
