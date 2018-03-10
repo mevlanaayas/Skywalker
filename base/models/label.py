@@ -12,10 +12,10 @@ class Label(AuditMixin):
     coords = models.CharField(max_length=100)
 
     class Meta:
-        unique_together = ('name', 'map')
+        unique_together = (('name', 'map'), )
         verbose_name = _('Label')
         verbose_name_plural = _('Labels')
-        db_table = 'base_labels'
+        db_table = 'labels'
         app_label = 'base'
 
     def __unicode__(self):
@@ -25,6 +25,6 @@ class Label(AuditMixin):
         return self.name
 
     def get_map(self):
-        result = get_object_or_404(Map, id=self.map.id)
+        result = Map.objects.get(id=self.map.id).name
         return result
         # returns map that has relation with this label
