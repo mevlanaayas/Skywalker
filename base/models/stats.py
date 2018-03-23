@@ -8,6 +8,8 @@ class Stats(AuditMixin):
     destination_label = models.CharField(ul('Destination Label'), max_length=255)
     path_length = models.IntegerField(ul('Path Length'))
     down_time = models.IntegerField(ul('Down Time'))
+    map_data = models.TextField()
+    movement_data = models.TextField()
 
     class Meta:
         verbose_name = ul('Stats')

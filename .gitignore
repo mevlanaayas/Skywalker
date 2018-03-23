@@ -110,3 +110,6 @@ venv.bak/
 
 # db files
 db.sqlite3
+
+# map json
+new_map.json
