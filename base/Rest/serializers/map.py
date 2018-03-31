@@ -27,7 +27,6 @@ class MapSerializer(ModelSerializer):
         model = Map
         fields = ('id', 'name', 'labels', 'movement_data', 'map_data', 'label_data')
 
-    """
     def create(self, validated_data):
         logger = logging.getLogger('hero_logger')
         map_data = validated_data.get('map_data', JSON_KEY_ERROR_MESSAGE)
@@ -42,6 +41,6 @@ class MapSerializer(ModelSerializer):
         logger.debug('process finished')
         # label_data = validated_data['label_data']
         # ready2use_map_data = map_data_op(adam_gibi_map_data)
-        del validated_data['label_data']
+        # del validated_data['label_data']
+        # validated_data['map_data'] = new_map_json
         return super(MapSerializer, self).create(validated_data)
-    """
