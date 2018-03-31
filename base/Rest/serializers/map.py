@@ -14,7 +14,7 @@ class MapSerializer(ModelSerializer):
 
     """
     labels = SerializerMethodField()
-    label_data = serializers.CharField(write_only=True)
+    # label_data = serializers.CharField(write_only=True)
 
     @staticmethod
     def get_labels(obj):
@@ -27,6 +27,7 @@ class MapSerializer(ModelSerializer):
         model = Map
         fields = ('id', 'name', 'labels', 'movement_data', 'map_data', 'label_data')
 
+    """
     def create(self, validated_data):
         logger = logging.getLogger('hero_logger')
         map_data = validated_data.get('map_data', JSON_KEY_ERROR_MESSAGE)
@@ -43,3 +44,4 @@ class MapSerializer(ModelSerializer):
         # ready2use_map_data = map_data_op(adam_gibi_map_data)
         del validated_data['label_data']
         return super(MapSerializer, self).create(validated_data)
+    """

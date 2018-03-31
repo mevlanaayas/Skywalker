@@ -8,6 +8,7 @@ class Map(AuditMixin):
     name = models.CharField(max_length=100, unique=True)
     map_data = models.TextField()
     movement_data = models.TextField()
+    label_data = models.TextField()
     point_set = models.TextField()
 
     class Meta:
