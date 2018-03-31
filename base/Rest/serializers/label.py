@@ -19,4 +19,4 @@ class LabelSerializer(ModelSerializer):
 
         """
         model = Label
-        fields = ('name', 'coords', 'map_name', 'map')
+        fields = ('id', 'name', 'coords', 'map_name', 'map')
