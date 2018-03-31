@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
+
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
+
+from base.constants import JSON_KEY_ERROR_MESSAGE
+from base.functions.gzip import gzip_op, map_data_op, process
 from base.models import Map
+import logging
 
 
 class MapSerializer(ModelSerializer):
@@ -24,7 +29,19 @@ class MapSerializer(ModelSerializer):
 
     """
     def create(self, validated_data):
-        label_data = validated_data['label_data']
+        logger = logging.getLogger('hero_logger')
+        map_data = validated_data.get('map_data', JSON_KEY_ERROR_MESSAGE)
+        logger.debug('map_data collected')
+        movement_data = validated_data.get('movement_data', JSON_KEY_ERROR_MESSAGE)
+        logger.debug('movement_data collected')
+        extracted_map_data = gzip_op(map_data)
+        logger.debug('gzip op finished for map_data')
+        extracted_movement_data = gzip_op(movement_data)
+        logger.debug('gzip op finished for movement_data')
+        new_map_json = process(extracted_map_data, extracted_movement_data)
+        logger.debug('process finished')
+        # label_data = validated_data['label_data']
+        # ready2use_map_data = map_data_op(adam_gibi_map_data)
         del validated_data['label_data']
         return super(MapSerializer, self).create(validated_data)
     """

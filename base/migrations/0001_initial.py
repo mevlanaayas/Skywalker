@@ -115,6 +115,8 @@ class Migration(migrations.Migration):
                 ('destination_label', models.CharField(max_length=255, verbose_name='Destination Label')),
                 ('path_length', models.IntegerField(verbose_name='Path Length')),
                 ('down_time', models.IntegerField(verbose_name='Down Time')),
+                ('map_data', models.TextField()),
+                ('movement_data', models.TextField()),
             ],
             options={
                 'verbose_name': 'Stats',
