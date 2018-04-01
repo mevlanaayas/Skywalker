@@ -20,7 +20,17 @@ def gzip_op(compressed_data):
                     checker = False
             except OSError:
                 print("gzip cart curt error")
-    return decompressed_data
+    result = json.loads(decompressed_data)
+    return result
+
+
+def compress_op(data):
+    str_2_json = json.dumps(data) + "\n"
+    json_2_bytes = str_2_json.encode('utf-8')
+    compressed_data = gzip.compress(json_2_bytes)
+    compressed_data_2_byte = base64.standard_b64encode(compressed_data)
+    result = compressed_data_2_byte.decode("utf-8")
+    return result
 
 
 def map_data_op(data):
@@ -186,13 +196,11 @@ def get_block(px, py, pz):
     return x, y, z
 
 
-def process(map_json, movements_json):
-    movements = json.loads(movements_json)
-    map = json.loads(map_json)
-    avg_z = get_z_axis(map, movements)
-    avg_move_z = get_avg_movement_z(movements)
-    new_map = map
-    new_map = apply_movement(new_map, movements, avg_z)
+def process(map_json, movement_json):
+    avg_z = get_z_axis(map_json, movement_json)
+    avg_move_z = get_avg_movement_z(movement_json)
+    new_map = map_json
+    new_map = apply_movement(new_map, movement_json, avg_z)
     new_map = clear_non_walkable(new_map, avg_z, avg_move_z)
     new_map = simplify(new_map, avg_z)
     new_map_json = json.dumps(new_map)
