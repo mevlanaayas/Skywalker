@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, SerializerMethodField, CharField
 
 from base.constants import JSON_KEY_ERROR_MESSAGE
-from base.functions.gzip import gzip_op, map_data_op, process
+from base.functions.gzip import gzip_op, map_data_op, process, compress_op
 from base.models import Map
 import logging
 
@@ -39,8 +39,11 @@ class MapSerializer(ModelSerializer):
         logger.debug('gzip op finished for movement_data')
         new_map_json = process(extracted_map_data, extracted_movement_data)
         logger.debug('process finished')
+        logger.debug('re compressing starting')
+        new_map_data = compress_op(new_map_json)
+        logger.debug('re compressing finished')
         # label_data = validated_data['label_data']
         # ready2use_map_data = map_data_op(adam_gibi_map_data)
         # del validated_data['label_data']
-        # validated_data['map_data'] = new_map_json
+        validated_data['map_data'] = str(new_map_data)
         return super(MapSerializer, self).create(validated_data)
