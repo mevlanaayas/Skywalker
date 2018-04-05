@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
-from rest_framework.serializers import ModelSerializer
-from base.models import KR
+from rest_framework.serializers import ModelSerializer, EmailField
+from base.models import KR, Map
 
 
 class KRSerializer(ModelSerializer):
     """
 
     """
+    email = EmailField(write_only=True)
+
     class Meta:
         """
 
         """
         model = KR
-        fields = '__all__'
+        fields = ['id', 'map_id', 'created_by', 'email']
+        read_only_fields = ['map']
+
