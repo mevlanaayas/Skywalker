@@ -22,7 +22,7 @@ class KRView(ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data['email']
-        del serializer.validated_data['del']
+        del serializer.validated_data['email']
         self.perform_create(serializer)
 
         kr_id = serializer.data['id']
