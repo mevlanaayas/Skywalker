@@ -19,6 +19,13 @@ class MapView(ModelViewSet):
     queryset = Map.objects.all()
     ordering_fields = '__all__'
 
+    def retrieve(self, request, *args, **kwargs):
+        # TODO : buraya qr id gelecek.
+        # FIXME: qr id ile retrieve etmenin override etmeden bir yolunu araştır bu func kalkacak
+        qr = KR.objects.get(id=kwargs['pk'])
+        kwargs['pk'] = qr.map_id
+        return super(MapView, self).retrieve(request, args, kwargs)
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

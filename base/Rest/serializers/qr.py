@@ -14,6 +14,6 @@ class KRSerializer(ModelSerializer):
 
         """
         model = KR
-        fields = ['id', 'map_id', 'created_by', 'email']
-        read_only_fields = ['map']
+        fields = ['id', 'created_by', 'email']
+        read_only_fields = ['map', 'map_id']
 
