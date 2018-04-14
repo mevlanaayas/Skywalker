@@ -48,6 +48,10 @@ def map_data_op(data):
     return positions
 
 
+def extract_label_point(data):
+    return 5
+
+
 def is_in_range(range_list, position):
     for point in range_list:
         x = point["x"]
