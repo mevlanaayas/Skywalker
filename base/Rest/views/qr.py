@@ -28,7 +28,7 @@ class KRView(ModelViewSet):
         kr_id = serializer.data['id']
         create_kr(kr_id)
         combine_images()
-        send_kr(email)
+        send_kr(email, kr_id)
 
         return super(KRView, self).create(request, args, kwargs)
 

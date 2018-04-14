@@ -8,8 +8,10 @@ django-url-filter==0.3.4
 djangorestframework==3.7.7
 enum-compat==0.0.2
 gunicorn==19.7.1
+Pillow==5.1.0
 psycopg2==2.7.3.2
 pytz==2017.3
+qrcode==6.0
 selenium==3.9.0
 six==1.11.0
 whitenoise==3.3.1
