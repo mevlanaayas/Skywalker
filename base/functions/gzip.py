@@ -208,10 +208,4 @@ def process(map_json, movement_json):
     new_map = clear_non_walkable(new_map, avg_z, avg_move_z)
     new_map = simplify(new_map, avg_z)
     new_map_json = json.dumps(new_map)
-    """
-    next three lines will be commented on prod
-    """
-    file = open("new_map.json", "w")
-    file.write(new_map_json)
-    file.close()
     return new_map_json
