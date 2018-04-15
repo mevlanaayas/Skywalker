@@ -12,6 +12,24 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+# env file reading
+try:
+    with open('.env') as f:
+        content = f.read()
+        contents = content.split('\n')
+        for con in contents:
+            key, value = con.split(' = ')
+            val = value[1:-1]
+            os.environ.setdefault(key, val)
+except IOError:
+    content = ''
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ['SECRET_KEY']
+MAIL_ADDRESS = os.environ['MAIL_ADDRESS']
+MAIL_PASSWORD = os.environ['MAIL_PASSWORD']
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,8 +37,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=@%vt1lr$+q9e^(u(k1^^*mg+*u3@gn4j@_rao0x%(n!^($#*3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -154,7 +170,7 @@ LOGGING = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Turkey'
 
 USE_I18N = True
 
@@ -194,3 +210,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 ACCOUNT_LOGOUT_ON_GET = True
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ['MAIL_ADDRESS']
+EMAIL_HOST_PASSWORD = os.environ['MAIL_PASSWORD']

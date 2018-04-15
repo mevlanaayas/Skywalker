@@ -9,6 +9,7 @@ from base.models.mixins import AuditMixin
 class KR(AuditMixin):
 
     map_id = models.IntegerField(null=True)
+    email = models.EmailField()
 
     class Meta:
         verbose_name = _('KR')

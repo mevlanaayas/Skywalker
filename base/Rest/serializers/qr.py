@@ -7,7 +7,6 @@ class KRSerializer(ModelSerializer):
     """
 
     """
-    email = EmailField(write_only=True)
 
     class Meta:
         """
@@ -15,5 +14,5 @@ class KRSerializer(ModelSerializer):
         """
         model = KR
         fields = ['id', 'created_by', 'email']
-        read_only_fields = ['map', 'map_id']
+        read_only_fields = ['map_id']
 

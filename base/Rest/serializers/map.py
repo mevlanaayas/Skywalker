@@ -13,14 +13,13 @@ class MapSerializer(ModelSerializer):
     """
 
     """
-    qr_id = serializers.IntegerField(write_only=True)
-
     class Meta:
         """
 
         """
         model = Map
         fields = ('id', 'name', 'movement_data', 'map_data', 'label_data', 'qr_id')
+        lookup_fields = 'qr_id'
 
     def create(self, validated_data):
         logger = logging.getLogger('hero_logger')

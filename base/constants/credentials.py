@@ -1,2 +1,0 @@
-MAIL_ADDRESS = ""
-MAIL_PASSWORD = ""
