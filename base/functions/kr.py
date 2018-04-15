@@ -4,30 +4,26 @@ python first
 django second
 your app and locals last
 """
+import os
+from MyQR import myqr
 from django.utils import timezone
 from django.core.mail import send_mail
 from Skywalker import settings
-from base.models import KR
-import qrcode
 
 
 def create_kr(kr_id):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=10,
-        border=4,
+    file_name = "qr_" + str(kr_id) + ".png"
+    myqr.run(
+        str(kr_id),
+        version=settings.QR_CODE_DETAIL_VERSION,
+        level='H',
+        picture=os.getcwd() + '/square.jpg',
+        colorized=True,
+        contrast=1.0,
+        brightness=1.0,
+        save_name=file_name,
+        save_dir=os.getcwd()
     )
-    kr_id_json = {'qr_id': kr_id}
-    qr.add_data(kr_id_json)
-    qr.make(fit=True)
-    qr_img = qr.make_image()
-    file_name = "qr" + str(kr_id) + ".jpg"
-    qr_img.save(file_name)
-
-
-def combine_images():
-    pass
 
 
 def send_kr(email, mg_id):
