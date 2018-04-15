@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 """
 python first
 django second
