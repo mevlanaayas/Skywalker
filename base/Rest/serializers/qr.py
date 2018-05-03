@@ -7,9 +7,12 @@ class KRSerializer(ModelSerializer):
     """
 
     """
+
     class Meta:
         """
 
         """
         model = KR
-        fields = '__all__'
+        fields = ['id', 'created_by', 'email']
+        read_only_fields = ['map_id']
+

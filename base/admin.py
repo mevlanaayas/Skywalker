@@ -1,7 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
-from base.models import CustomUser, Map, Label
+from django.contrib.auth.models import User
+from base.models import Map, Label
 
 admin.site.empty_value_display = 'Yok'
 
@@ -16,11 +15,12 @@ class LabelAdmin(admin.ModelAdmin):
     list_display_links = ('name',)
 
 
-class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'first_name', 'email', 'contact', 'positionID')
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'first_name', 'email')
     list_display_links = ('username',)
 
 
 admin.site.register(Map, MapAdmin)
 admin.site.register(Label, LabelAdmin)
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

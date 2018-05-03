@@ -9,7 +9,8 @@ class Map(AuditMixin):
     map_data = models.TextField()
     movement_data = models.TextField()
     label_data = models.TextField()
-    point_set = models.TextField()
+    initial_data = models.TextField()
+    qr_id = models.IntegerField(null=True, unique=True)
 
     class Meta:
         verbose_name = _('Map')
@@ -22,16 +23,3 @@ class Map(AuditMixin):
 
     def __str__(self):
         return self.name
-
-    def labels(self):
-        from base.Rest.serializers.label import LabelSerializer
-        from base.models.label import Label
-        result = Label.objects.filter(map=self)
-        serializer = LabelSerializer(data=result, many=True)
-        serializer.is_valid()
-        return serializer.data
-        # returns labels of map
-
-    def qr(self):
-        pass
-        # returns qr. don't know it is required. will se
