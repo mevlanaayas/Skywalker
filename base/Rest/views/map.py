@@ -4,7 +4,7 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from url_filter.integrations.drf import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from base.Rest.filters import MapFilter
 from base.Rest.serializers import MapSerializer
 from base.models import Map, KR

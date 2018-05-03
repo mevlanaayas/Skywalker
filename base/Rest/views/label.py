@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 from rest_framework.filters import OrderingFilter
 from rest_framework.viewsets import ModelViewSet
 from url_filter.integrations.drf import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from base.Rest.filters import LabelFilter
 from base.Rest.serializers import LabelSerializer
 from base.models import Label

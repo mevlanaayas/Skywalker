@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from base.models.map import Map
 from base.models.mixins import AuditMixin
@@ -23,8 +22,3 @@ class Label(AuditMixin):
 
     def __str__(self):
         return self.name
-
-    def get_map(self):
-        result = Map.objects.get(id=self.map.id).name
-        return result
-        # returns map that has relation with this label

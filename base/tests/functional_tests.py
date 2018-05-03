@@ -25,9 +25,9 @@ class BlackBoxTest(unittest.TestCase):
     def test_page_title_loaded_correctly(self):
         # actions
         # go into our good looking web application
-        self.browser.get(url="http://127.0.0.1:8000/")
+        self.browser.get(url="http://127.0.0.1:8001/")
 
-        assert 'Page not found at /' in self.browser.title, "Browser title was " + self.browser.title
+        assert 'Page not found at /' in self.browser.title, "Browser title was >>" + self.browser.title + "<<"
 
 
 if __name__ == '__main__':
