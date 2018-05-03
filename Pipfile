@@ -5,21 +5,34 @@ verify_ssl = true
 name = "pypi"
 
 
+[dev-packages]
+
+
+
 [packages]
 
 cached-property = "==1.3.1"
 dj-database-url = "==0.4.2"
-django = "==2.0.2"
+Django = "==2.0.2"
 django-currentuser = "==0.2.2"
 django-heroku = "==0.2.0"
+django-rest-auth = "==0.9.3"
 django-url-filter = "==0.3.4"
 djangorestframework = "==3.7.7"
 enum-compat = "==0.0.2"
 gunicorn = "==19.7.1"
+imageio = "==2.3.0"
+MyQR = "==2.3.1"
+numpy = "==1.14.2"
+Pillow = "==5.1.0"
 "psycopg2" = "==2.7.3.2"
 pytz = "==2017.3"
-whitenoise = "*"
+qrcode = "==6.0"
+selenium = "==3.9.0"
+six = "==1.11.0"
+whitenoise = "==3.3.1"
 
 
-[dev-packages]
+[requires]
 
+python_version = "3.6"
