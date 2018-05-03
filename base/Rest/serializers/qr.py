@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from rest_framework.serializers import ModelSerializer, EmailField
-from base.models import KR, Map
+from rest_framework.serializers import ModelSerializer
+from base.models import KR
 
 
 class KRSerializer(ModelSerializer):

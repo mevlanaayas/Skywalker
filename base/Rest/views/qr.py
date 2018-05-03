@@ -3,11 +3,11 @@ from rest_framework import status
 from rest_framework.filters import OrderingFilter
 from rest_framework.viewsets import ModelViewSet
 from url_filter.integrations.drf import DjangoFilterBackend
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from base.Rest.filters import KRFilter
 from base.Rest.serializers import KRSerializer
 from base.functions.kr import create_kr, send_kr
-from base.models import KR, Map
+from base.models import KR
 from rest_framework.response import Response
 
 
