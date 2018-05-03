@@ -18,7 +18,7 @@ class MapView(ModelViewSet):
     permission_classes = (AllowAny, )
     queryset = Map.objects.all()
     lookup_field = 'qr_id'
-    ordering_fields = '__all__'
+    ordering_fields = ('created_at', 'updated_at')
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

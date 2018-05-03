@@ -15,8 +15,9 @@ class MapSerializer(ModelSerializer):
 
         """
         model = Map
-        fields = ('id', 'name', 'movement_data', 'map_data', 'label_data', 'qr_id')
+        fields = ('id', 'name', 'movement_data', 'map_data', 'initial_data', 'label_data', 'qr_id')
         lookup_fields = 'qr_id'
+        read_only_fields = ['initial_data']
 
     def create(self, validated_data):
         map_data = validated_data.get('map_data', JSON_KEY_ERROR_MESSAGE)
@@ -31,4 +32,5 @@ class MapSerializer(ModelSerializer):
         # label_data = validated_data['label_data']
         # save_label(extract_label_point(label_data))
         validated_data['map_data'] = str(new_map_data)
+        validated_data['initial_data'] = map_data
         return super(MapSerializer, self).create(validated_data)
