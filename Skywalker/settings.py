@@ -29,8 +29,6 @@ except IOError:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', None)
-MAIL_ADDRESS = os.getenv('MAIL_ADDRESS')
-MAIL_PASSWORD = os.getenv('MAIL_PASSWORD')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -157,11 +155,11 @@ DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 ACCOUNT_LOGOUT_ON_GET = True
 
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('MAIL_ADDRESS', None)
-EMAIL_HOST_PASSWORD = os.getenv('MAIL_PASSWORD', None)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', os.getenv('SENDGRID_USERNAME'))
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', os.getenv('SENDGRID_PASSWORD'))
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ADMINS = [('trAbz', 'mevlanaayas@gmail.com'), ]

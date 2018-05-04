@@ -11,5 +11,5 @@ class KR(AuditMixin):
     class Meta:
         verbose_name = _('KR')
         verbose_name_plural = _('KRs')
-        db_table = 'KRs'
+        db_table = 'krs'
         app_label = 'base'
