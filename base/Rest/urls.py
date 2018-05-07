@@ -6,6 +6,7 @@ from base.Rest.views.map import MapView
 from base.Rest.views.qr import KRView
 from rest_auth.views import LoginView, LogoutView
 
+from base.Rest.views.vue import VueView
 
 router = DefaultRouter()
 router.register(r'map', MapView)
@@ -14,6 +15,5 @@ router.register(r'qr', KRView)
 
 urlpatterns = [
     url(r'', include(router.urls)),
-    url(r'^logout/$', LogoutView.as_view(), name='logout'),
-    url(r'^login/$', LoginView.as_view(), name="login"),
+    url(r'^sync/$', VueView.as_view({'get': 'synchronize'}))
 ]
