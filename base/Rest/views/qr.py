@@ -26,6 +26,9 @@ class KRView(ModelViewSet):
         email = serializer.validated_data['email']
         self.perform_create(serializer)
         kr_id = serializer.data['id']
+        created_kr = KR.objects.get(id=kr_id)
+        created_kr.created_by = email
+        created_kr.save()
         create_kr(kr_id)
         send_kr(email, kr_id)
         headers = self.get_success_headers(serializer.data)
