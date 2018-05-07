@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import status
 from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
@@ -26,9 +27,17 @@ class MapView(ModelViewSet):
         qr_id = serializer.validated_data['qr_id']
         self.perform_create(serializer)
         map_id = serializer.data['id']
-        updated_kr = KR.objects.get(id=qr_id)
-        updated_kr.map_id = map_id
-        updated_kr.save()
+        try:
+            updated_kr = KR.objects.get(id=qr_id)
+            updated_kr.map_id = map_id
+            updated_kr.save()
+            created_map = Map.objects.get(id=map_id)
+            created_map.created_by = updated_kr.email
+            created_map.save()
+        except ObjectDoesNotExist as e:
+            created_map = Map.objects.get(id=map_id)
+            created_map.delete()
+            return Response({'error': e.args[0]})
         headers = self.get_success_headers(serializer.data)
         return Response({'map_name': serializer.data['name'], 'op': 'created'}, headers=headers,
                         status=status.HTTP_201_CREATED)
