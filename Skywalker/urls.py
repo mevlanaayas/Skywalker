@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from rest_auth.views import LogoutView, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/Skywalker/', include('base.Rest.urls'))
+    url(r'^api/Skywalker/', include('base.Rest.urls')),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^login/$', LoginView.as_view(), name="login"),
 ]
