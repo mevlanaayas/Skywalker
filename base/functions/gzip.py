@@ -2,7 +2,6 @@
 import base64
 import gzip
 import io
-from copy import deepcopy
 import json
 from math import floor
 
@@ -31,25 +30,6 @@ def compress_op(data):
     compressed_data_2_byte = base64.standard_b64encode(compressed_data)
     result = compressed_data_2_byte.decode("utf-8")
     return result
-
-
-def map_data_op(data):
-    positions = []
-    for key, value in data.items():
-        # data['key]['0:-1:-1']['blocks'][0]['position']
-        for key1, value1 in value.items():
-            for key2, value2 in value1.items():
-                for temp in value2:
-                    try:
-                        temp_array = deepcopy(temp['position'])
-                        positions.append(temp_array)
-                    except TypeError:
-                        print("chunk position found")
-    return positions
-
-
-def extract_label_point(data):
-    return 5
 
 
 def is_in_range(range_list, position):
