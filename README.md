@@ -36,11 +36,11 @@ Go into project directory that has manage.py file
 
 * **Mevlana** - *Initial work* - [mevlanaayas](https://github.com/mevlanaayas)
 
-See also the list of [contributors](https://github.com/mevlanaayas/django-teams/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/mevlanaayas/Skywalker/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/mevlanaayas/django-teams/blob/master/LICENSE.txt) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/mevlanaayas/Skywalker/blob/master/LICENSE.txt) file for details
 
 ## Acknowledgements
 
